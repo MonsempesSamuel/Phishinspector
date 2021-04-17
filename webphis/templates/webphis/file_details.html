@@ -1,0 +1,108 @@
+{% extends 'poc_framework/base.html' %}
+
+
+{% block content %}
+
+
+
+<div id="page-content-wrapper">
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/{{ app }}/download_file/{{ file.pk }}">Download file</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Docker
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" target="_blank" href="/{{ app }}/docker/{{ file.pk }}">Run it with docker (http://localhost:8080)</a>
+            <a class="dropdown-item" target="_blank" href="/{{ app }}/docker/0">Stop running docker</a>
+            <a class="dropdown-item" target="_blank" href="/{{ app }}/download_file/{{ file.pk }}">Download file</a>
+            <a class="dropdown-item" target="_blank" href="/{{ app }}/download_tcpdump_human">Download tcpdump text</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container-fluid" >
+    <h1 class="mt-4">File: {{ filename }} </h1>
+    <p>PhishTank id: {{ file.ref_id }} <br>
+      Found at: {{source.URL }}<br>
+      File path: {{ path }}</p><br>
+
+
+  {% if file.extension == ".txt" %}
+    <div class="table-responsive" style="width: 60%; height: 250px; max-height: 400px; ">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Emails automaticly found</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in email_list %}
+          <tr>
+            <td >{{ item }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <br>
+  {% else %}
+    <div class="table-responsive" style="width: 60%; height: 250px; max-height: 400px; ">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Emails automaticly found</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in email_list %}
+          <tr>
+            <td >{{ item }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <br>
+  {% endif %}
+
+    This file has also been found in the following web sites: <br>
+    <div class="table-responsive"  style="width: 60%; max-height: 400px;">
+      <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">PhishTank id</th>
+          <th scope="col">Country</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for site in same_websites %}
+        <tr>
+          <th scope="row"><a href="/{{ app }}/file_details/{{ site.pk }}">{{ site.phishtank_id }}</a></th>
+          <th scope="row">{{ site.country }}</th>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</div>
+</div>
+
+{% endblock %}

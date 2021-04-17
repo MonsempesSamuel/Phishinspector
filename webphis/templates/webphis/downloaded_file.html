@@ -1,0 +1,67 @@
+{% extends 'poc_framework/base.html' %}
+
+
+{% block content %}
+
+
+
+<div id="page-content-wrapper">
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/{{ app }}/update_downloaded_file"">Scan URL</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <h1 class="mt-4">Downloaded files</h1>
+    <p>Text</p>
+
+
+
+
+    <div class="table-responsive">
+      <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">PhishTank id</th>
+          <th scope="col">URL</th>
+          <th scope="col">sha1</th>
+          <th scope="col">Extension</th>
+          <th scope="col">First dl</th>
+          <th scope="col">Last dl</th>
+          <th scope="col">changed</th>
+          <th scope="col">unchanged</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in query_results %}
+        <tr>
+          <th scope="row"><a href="/{{ app }}/file_details/{{ item.pk }}" >{{ item.ref_id }}</a></th>
+          <td class="cell_limit">{{ item.URL }}</td>
+          <td>{{ item.sha1_hex }}</td>
+          <td>{{ item.extension }}</td>
+          <td>{{ item.first_dl_date }}</td>
+          <td>{{ item.last_dl_date }}</td>
+          <td>{{ item.sha1_is_not_same_count }}</td>
+          <td>{{ item.sha1_is_same_count }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+</div>
+</div>
+
+{% endblock %}

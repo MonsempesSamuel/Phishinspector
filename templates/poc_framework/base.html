@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Simple Sidebar - Start Bootstrap Template</title>
+  {% load static %}
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" type="text/css" href="{% static 'webphis/vendor/bootstrap/css/bootstrap.css' %}" />
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'webphis/css/simple-sidebar.css' %}" rel="stylesheet">
+
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-stock.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-data-adapter.min.js"></script>
+  <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css" type="text/css" rel="stylesheet">
+  <link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css" type="text/css" rel="stylesheet">
+  <style type="text/css">
+
+    html,
+    body,
+    #container {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    .cell_limit {
+    max-width: 200px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    }
+
+</style>
+
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">PhishInspector </div>
+
+      <ul class="nav nav-tabs flex-column">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="/{{ app }}/map" role="button" aria-haspopup="true" aria-expanded="false">Map</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="/{{ app }}/global_stats" role="button" aria-haspopup="true" aria-expanded="false">Global stats</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="/{{ app }}/downloaded_file" role="button" aria-haspopup="true" aria-expanded="false">Downloaded files</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="/{{ app }}/search_personal_data" role="button" aria-haspopup="true" aria-expanded="false">Personal data</a>
+        </li>
+      </ul>
+
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    {% block content %} {% endblock %}
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'webphis/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'webphis/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+</body>
+
+</html>

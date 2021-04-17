@@ -1,0 +1,57 @@
+{% extends 'poc_framework/base.html' %}
+
+
+{% block content %}
+
+
+
+<div id="page-content-wrapper">
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <!-- <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li> -->
+        <li class="nav-item dropdown">
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container-fluid" >
+    <h1 class="mt-4">Personal data search engine ({{ dict_lenght }})</h1>
+
+    <div class="table-responsive" style="width: 90%; height: 1000px; max-height: 10000px; ">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Files and lines</th>
+            <th >data</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for key,value in personal_data_dict.items %}
+          <tr>
+            <td >{{ key }}</td>
+            <td >{{ value  }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <br>
+
+
+
+
+</div>
+</div>
+
+{% endblock %}

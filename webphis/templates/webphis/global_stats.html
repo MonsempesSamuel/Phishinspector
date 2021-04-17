@@ -1,0 +1,100 @@
+{% extends 'poc_framework/base.html' %}
+
+
+{% block content %}
+
+
+
+<div id="page-content-wrapper">
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/{{ app }}/update_global_stats"">Update from PhishTank</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <h1 class="mt-4">phishinspector homepage</h1>
+    <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
+    <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
+
+    <div id="container" style="width: 50%; height: 250px;"></div>
+    <script>
+
+      anychart.onDocumentReady(function () {
+        // create line chart
+        var chart = anychart.line();
+
+        // chart.yScale().minimum(0); # Comment = auto graph scale
+
+        // create line series
+        var series = chart.line(getData());
+
+        series.normal().stroke('#999999', 5, null, 'round', 'round');
+        series.normal().risingStroke('#66BB6A', 5, null, 'round', 'round');
+        series.normal().fallingStroke('#FF7043', 5, null, 'round', 'round');
+
+        // set container id for the chart
+        chart.container('container');
+
+        // initiate chart drawing
+        chart.draw();
+      });
+
+      // return data for chart
+      function getData() {
+        return [
+          {% for item in history %}
+            ['{{ item.date }}', {{ item.count_rows }}],
+          {% endfor %}
+          // ['Jan 2010', 35],
+        ];
+      }
+
+  </script>
+
+
+
+    <div class="table-responsive">
+      <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">PhishTank id</th>
+          <th scope="col">URL</th>
+          <th scope="col">Online</th>
+          <th scope="col">Target</th>
+          <th scope="col">IP address</th>
+          <th scope="col">Country iso</th>
+          <th scope="col">Submission time</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in query_results %}
+        <tr>
+          <th scope="row">{{ item.phishtank_id }}</th>
+          <td class="cell_limit">{{ item.URL }}</td>
+          <td>{{ item.online }}</td>
+          <td>{{ item.target }}</td>
+          <td>{{ item.ip_address }}</td>
+          <td>{{ item.country_iso }}</td>
+          <td>{{ item.submission_time }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+</div>
+</div>
+
+{% endblock %}

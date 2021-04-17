@@ -1,0 +1,84 @@
+{% extends 'poc_framework/base.html' %}
+
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css" />
+<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css" />
+
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
+<script type='text/javascript' src='http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js'></script>
+<script type='text/javascript' src='http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js'></script>
+
+<div id="page-content-wrapper">
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+        <!-- <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Download current map</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Filters
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Country</a>
+            <a class="dropdown-item" href="#">Tools</a>
+            <a class="dropdown-item" href="#">Targets</a>
+            <a class="dropdown-item" href="#">Is referenced</a>
+            <a class="dropdown-item" href="#">Active</a>
+            <a class="dropdown-item" href="#">Inactive</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Download current map</a>
+          </div>
+        </li> -->
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <h1 class="mt-4">World Map Phishing websites</h1>
+    <p>To do: Replace with tables ?
+    </p>
+  </div>
+
+  <div id="map" style="width: 800px; height: 500px; border: 1px solid #AAA;"></div>
+  <script type='text/javascript'>
+    var markers = {{ json_map_data|safe }};
+    // var markers = [{"name": "CA", "country": "Canada", "lat": "43.7946", "lng": "-79.2644"}, {"name": "US", "country": "United States", "lat": "34.0355", "lng": "-118.4298"}]
+  </script>
+  <script type='text/javascript' src='{% static 'webphis/maps/leaf-demo.js' %}'></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
